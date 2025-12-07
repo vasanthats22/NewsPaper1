@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latest News - Newspaper</title>
+
+<style>
+*{
+    margin:0; padding:0; box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+    width:100%;
+    overflow-x:hidden; /* IMPORTANT – No horizontal scroll */
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+/* SECTION STYLE */
+.section{
+    background:white;
+    margin-bottom:20px;
+    border-radius:12px;
+    padding:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.section h2{
+    margin-bottom:10px;
+    font-size:22px;
+    color:#222;
+}
+
+.section p{
+    margin-top:8px;
+    color:#555;
+}
+
+/* IMAGE STYLE */
+.section img{
+    width:100%;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+/* RESPONSIVE GRID (for desktops) */
+.grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .grid-2{
+        grid-template-columns:1fr; /* stack on mobile */
+    }
+
+    .section{
+        text-align:center; /* center content in mobile */
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<div class="container">
+
+    <!-- SECTION 1 -->
+    <div class="section grid-2">
+        <div>
+            <h2>Breaking News: Global Market Surges</h2>
+            <p>
+                Global stock markets soared today as investors reacted positively
+            to the latest economic reports showing higher-than-expected growth.
+            </p>
+        </div>
+        <img src="latest1.webp" alt="AI News">
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section grid-2">
+        <div>
+            <h2>Technology: AI Innovations of 2025</h2>
+            <p>
+                Artificial Intelligence continues to revolutionize industries.
+                Here's how new advancements are changing the world rapidly.
+            </p>
+        </div>
+        <img src="latest2.webp" alt="AI News">
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="section grid-2">
+        <div>
+        <h2>Sports: National Team Secures Big Win</h2>
+        <p>
+            In an unforgettable match, the national team claimed victory
+            with stunning performance and teamwork.
+        </p>
+         </div>
+        <img src="latest3.webp" alt="Sports News">
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="section grid-2">
+        <div>
+            <h2>Weather Update: Heavy Rains Expected</h2>
+            <p>
+                Meteorological Department warns of heavy rainfall in several regions.
+                Citizens are advised to stay alert and take precautions.
+            </p>
+        </div>
+          <img src="latest4.webp" alt="Weather News">
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="section grid-2">
+        <div>
+        <h2>Entertainment: New Movie Breaks Records</h2>
+        <p>
+            The latest blockbuster has smashed all previous records,
+            becoming the highest-grossing film of the year so far.
+        </p>
+        </div>
+        <img src="latest5.webp" alt="Movie News">
+    </div>
+
+    <!-- SECTION 6 -->
+    <div class="section grid-2">
+        <div>
+            <h2>Travel: Best Places to Visit This Year</h2>
+            <p>
+                Explore breathtaking destinations perfect for vacations
+                with friends and family in 2025.
+            </p>
+        </div>
+        <img src="latest6.webp" alt="Travel News">
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '404.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+</script>
+
+</body>
+</html>

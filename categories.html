@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News Categories</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f7f7f7;
+    overflow-x:hidden;
+}
+
+/* HEADER */
+.header{
+    background:#004b8f;
+    color:#fff;
+    padding:20px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* SECTION */
+.section{
+    width:100%;
+    max-width:800px;
+    margin:20px auto;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    overflow:hidden;
+}
+
+.section img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.section-content{
+    padding:15px 20px;
+}
+
+.section-title{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:10px;
+    color:#333;
+}
+
+.section-text{
+    font-size:15px;
+    color:#555;
+    line-height:1.6;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+    .header{
+        font-size:20px;
+    }
+    .section-title{
+        font-size:20px;
+        text-align:center;
+    }
+    .section-text{
+        text-align:center;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<div class="header">News Categories</div>
+
+<!-- SECTION 1 -->
+<div class="section">
+    <img src="politics1.webp" alt="">
+    <div class="section-content">
+        <div class="section-title">Politics</div>
+        <div class="section-text">
+            Get the latest updates on government decisions, elections, and political movements happening around the world.
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section">
+    <img src="sport1.webp" alt="">
+    <div class="section-content">
+        <div class="section-title">Sports</div>
+        <div class="section-text">
+            Stay updated with live scores, match highlights, sports events, and records across all major leagues.
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section">
+    <img src="tech1.webp" alt="">
+    <div class="section-content">
+        <div class="section-title">Technology</div>
+        <div class="section-text">
+            Discover the latest innovations, gadgets, software trends, and tech industry news from around the globe.
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section">
+    <img src="tv2.webp" alt="">
+    <div class="section-content">
+        <div class="section-title">Entertainment</div>
+        <div class="section-text">
+            Explore celebrity news, movie releases, OTT shows, music updates, and entertainment industry buzz.
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section">
+    <img src="basketball1.webp" alt="">
+    <div class="section-content">
+        <div class="section-title">Business & Finance</div>
+        <div class="section-text">
+            Read market trends, stock updates, financial planning tips, corporate news, and startup insights.
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section">
+    <img src="health1.webp" alt="">
+    <div class="section-content">
+        <div class="section-title">Health & Lifestyle</div>
+        <div class="section-text">
+            Browse articles on fitness, nutrition, wellness tips, lifestyle trends, and medical research updates.
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 7 -->
+<div class="section">
+    <img src="tv5.webp" alt="">
+    <div class="section-content">
+        <div class="section-title">Travel</div>
+        <div class="section-text">
+            Discover travel destinations, tips, guides, and adventure stories from different parts of the world.
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '404.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+</script>
+
+</body>
+</html>

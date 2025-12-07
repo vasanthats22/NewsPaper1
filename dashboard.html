@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Responsive NEWS Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
+
+body{
+    background:#f4f4f4;
+    overflow-x:hidden;
+}
+
+.layout{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR (color changed) */
+.sidebar{
+    width:250px;
+    background:#1b3c65;     /* NEW COLOR */
+    color:white;
+    padding:20px;
+    flex-shrink:0;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:20px;
+    font-size:22px;
+}
+
+.sidebar button{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+    background:#31598f;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.sidebar button:hover{
+    background:#4372b0;
+}
+
+/* MAIN CONTENT */
+.main{
+    flex:1;
+    padding:20px;
+}
+
+/* SECTION */
+.section{display:none;}
+.section.active{display:block;}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Smaller chart size */
+canvas{
+    max-height:250px !important;   /* MINIMIZED CHART HEIGHT */
+}
+
+/* NEWS ITEMS */
+.news-item{
+    background:#fff;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:15px;
+    box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .layout{flex-direction:column;}
+    .sidebar{
+        width:100%;
+        text-align:center;
+    }
+    .sidebar button{
+        max-width:300px;
+        margin:10px auto;
+    }
+    .main{
+        padding:10px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>NEWS PAPER</h2>
+        <button onclick="showSection('dashboard')">Dashboard</button>
+        <button onclick="showSection('headlines')">Top Headlines</button>
+        <button onclick="showSection('articles')">Latest Articles</button>
+        <button onclick="showSection('reports')">Readers Report</button>
+    </div>
+
+    <!-- MAIN AREA -->
+    <div class="main">
+
+        <!-- DASHBOARD SECTION -->
+        <div id="dashboard" class="section active">
+            <h1>Dashboard Overview</h1>
+
+            <div class="card">
+                <h2>Readers Growth (Line Chart)</h2>
+                <canvas id="lineChart"></canvas>
+            </div>
+
+            <div class="card">
+                <h2>News Category Views (Bar Chart)</h2>
+                <canvas id="barChart"></canvas>
+            </div>
+
+            <div class="card">
+                <h2>Audience Devices (Pie Chart)</h2>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+
+        <!-- HEADLINES -->
+        <div id="headlines" class="section">
+            <h1>🔥 Top Headlines</h1>
+
+            <div class="news-item">
+                <h2>Breaking: Market Hits All-time High</h2>
+                <p>Stock market surged to a new record today...</p>
+            </div>
+
+            <div class="news-item">
+                <h2>Sports: National Team Wins Trophy</h2>
+                <p>The national team clinched a historic championship...</p>
+            </div>
+
+            <div class="news-item">
+                <h2>Weather Alert: Heavy Rain Forecast</h2>
+                <p>IMD issued an alert for major cities...</p>
+            </div>
+        </div>
+
+        <!-- ARTICLES -->
+        <div id="articles" class="section">
+            <h1>📰 Latest Articles</h1>
+
+            <div class="news-item">
+                <h2>Technology Trends 2025</h2>
+                <p>The future of AI and automation...</p>
+            </div>
+
+            <div class="news-item">
+                <h2>Health: Benefits of Walking</h2>
+                <p>Doctors recommend daily walking for better health...</p>
+            </div>
+
+            <div class="news-item">
+                <h2>Travel: Best Winter Destinations</h2>
+                <p>Discover amazing travel spots this season...</p>
+            </div>
+        </div>
+
+        <!-- REPORT -->
+        <div id="reports" class="section">
+            <h1>📊 Readers Report</h1>
+
+            <div class="news-item">
+                <h2>Total Readers</h2>
+                <p>92,340 readers visited this month.</p>
+            </div>
+
+            <div class="news-item">
+                <h2>Most Read Category</h2>
+                <p>Technology & Business News</p>
+            </div>
+
+            <div class="news-item">
+                <h2>Most Active City</h2>
+                <p>Mumbai recorded maximum engagement.</p>
+            </div>
+        </div>
+
+    </div>
+</div> 
+<br><br>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '404.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+
+
+
+function showSection(id){
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+/* Line Chart */
+new Chart(document.getElementById("lineChart"), {
+    type: "line",
+    data: {
+        labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+        datasets: [{
+            label: "Readers",
+            data: [1200,1500,1400,1800,2200,2000,2500],
+            borderWidth: 3
+        }]
+    }
+});
+
+/* Bar Chart with 6 different colors */
+new Chart(document.getElementById("barChart"), {
+    type: "bar",
+    data: {
+        labels: ["Politics", "Sports", "Tech", "Health", "Business", "World"],
+        datasets: [{
+            label: "Views",
+            data: [50,80,120,60,100,90],
+            backgroundColor: [
+                "#ff595e", "#ffca3a", "#8ac926",
+                "#1982c4", "#6a4c93", "#ff924c"
+            ],
+            borderWidth: 1
+        }]
+    }
+});
+
+/* Pie Chart */
+new Chart(document.getElementById("pieChart"), {
+    type: "pie",
+    data: {
+        labels: ["Mobile", "Desktop", "Tablet"],
+        datasets: [{
+            data: [70,25,5]
+        }]
+    }
+});
+</script>
+
+</body>
+</html>

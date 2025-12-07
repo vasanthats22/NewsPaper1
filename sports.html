@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sports E-Paper</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f2f2f2;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Section Styling */
+.section {
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.section h2 {
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* Grid for news items */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.news-item {
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+}
+
+.news-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.news-item p {
+    font-size: 0.95em;
+    color: #555;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .section h2 {
+        font-size: 1.5em;
+    }
+
+    .news-item img {
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        text-align: center;
+    }
+
+    .news-item {
+        margin: 0 auto;
+    }
+
+    .news-item img {
+        height: 150px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<div class="container">
+
+    <!-- Section 1: Top Sports Headlines -->
+    <div class="section">
+        <h2>Top Sports Headlines</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <img src="sport1.webp" alt="Match 1">
+                <p>Team A wins thrilling match against Team B.</p>
+            </div>
+            <div class="news-item">
+                <img src="sport2.webp" alt="Match 2">
+                <p>Star player scores record-breaking points in championship.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Football -->
+    <div class="section">
+        <h2>Football</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <img src="football1.webp" alt="Football 1">
+                <p>Premier League latest updates and highlights.</p>
+            </div>
+            <div class="news-item">
+                <img src="football2.webp" alt="Football 2">
+                <p>International tournaments set to kick off this month.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Cricket -->
+    <div class="section">
+        <h2>Cricket</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <img src="cricket1.webp" alt="Cricket 1">
+                <p>India faces tough challenge in upcoming test series.</p>
+            </div>
+            <div class="news-item">
+                <img src="cricket2.webp" alt="Cricket 2">
+                <p>Top scorers from last season revealed.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4: Tennis -->
+    <div class="section">
+        <h2>Tennis</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <img src="tennis1.webp" alt="Tennis 1">
+                <p>Grand Slam updates and player rankings.</p>
+            </div>
+            <div class="news-item">
+                <img src="tennis2.webp" alt="Tennis 2">
+                <p>Upcoming tennis tournaments across the globe.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 5: Basketball -->
+    <div class="section">
+        <h2>Basketball</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <img src="basketball1.webp" alt="Basketball 1">
+                <p>NBA playoffs: highlights and game analysis.</p>
+            </div>
+            <div class="news-item">
+                <img src="basketball2.webp" alt="Basketball 2">
+                <p>Top draft picks and future prospects.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 6: Olympics -->
+    <div class="section">
+        <h2>Olympics</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <img src="olampics1.webp" alt="Olympics 1">
+                <p>Upcoming Olympics events schedule released.</p>
+            </div>
+            <div class="news-item">
+                <img src="olampics2.webp" alt="Olympics 2">
+                <p>Highlights from previous Olympic games.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 7: Player Interviews -->
+    <div class="section">
+        <h2>Player Interviews</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <img src="interview1.webp" alt="Interview 1">
+                <p>Exclusive interview with star footballer.</p>
+            </div>
+            <div class="news-item">
+                <img src="interview2.webp" alt="Interview 2">
+                <p>Top cricketer shares insights on training and performance.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 8: Upcoming Events -->
+    <div class="section">
+        <h2>Upcoming Events</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <img src="event1.webp" alt="Event 1">
+                <p>International sports events to watch this season.</p>
+            </div>
+            <div class="news-item">
+                <img src="event2.webp" alt="Event 2">
+                <p>Local tournaments and competitions schedule.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '4042.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+</script>
+
+</body>
+</html>

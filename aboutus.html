@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - Daily Times Newspaper</title>
+
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+
+    body {
+        background:#f5f5f5;
+    }
+
+    /* TOP BANNER */
+    .top-banner {
+        width:100%;
+        height:280px;
+        background:url('news1.webp') center/cover no-repeat;
+        position:relative;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+    .top-banner h1 {
+        background:rgba(0,0,0,0.4);
+        color:#fff;
+        padding:12px 25px;
+        border-radius:10px;
+        font-size:32px;
+    }
+
+    .container {
+        width:90%;
+        max-width:1100px;
+        margin:40px auto;
+    }
+
+    h2 {
+        text-align:center;
+        font-size:28px;
+        color:#00738c;
+        margin-bottom:25px;
+    }
+
+    .section {
+        display:flex;
+        gap:30px;
+        margin-bottom:50px;
+        align-items:center;
+    }
+
+    .section img {
+        width:100%;
+        max-width:350px;
+        border-radius:6px;
+    }
+
+    .text {
+        flex:1;
+        font-size:17px;
+        line-height:1.6;
+    }
+
+    /* MOBILE */
+    @media(max-width:768px){
+        .top-banner {
+            height:200px;
+        }
+        .top-banner h1 {
+            font-size:22px;
+        }
+
+        .section {
+            flex-direction:column;
+            text-align:center;
+        }
+
+        .section img {
+            margin-bottom:20px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<!-- TOP IMAGE BANNER -->
+<div class="top-banner">
+    <h1>About Our Newspaper</h1>
+</div>
+
+<div class="container">
+
+    <h2>Who We Are</h2>
+
+    <!-- ONLY ONE EXTRA IMAGE HERE -->
+    <div class="section">
+        <img src="about1.webp" alt="Newspaper Team">
+
+        <div class="text">
+            <p>
+                Daily Times is one of the most trusted and widely read newspapers,
+                delivering reliable journalism and authentic reporting to millions of readers
+                every single day. Our legacy spans decades, built on truth, integrity, and a
+                commitment to informing society.
+            </p>
+        </div>
+    </div>
+
+    <h2>Our Mission</h2>
+    <div class="section">
+        <div class="text">
+            <p>
+                Our mission is to empower the public with factual, unbiased, and impactful
+                news. We work to keep citizens informed about national, international,
+                political, and social developments with complete transparency.
+            </p>
+        </div>
+    </div>
+
+    <h2>Editorial Standards</h2>
+    <div class="section">
+        <div class="text">
+            <p>
+                We follow strict editorial guidelines, ensuring that every article published
+                undergoes verification, fact-checking, and multi-level review. Our newsroom
+                values ethics and journalistic responsibility above all else.
+            </p>
+        </div>
+    </div>
+
+    <h2>Our Team</h2>
+    <div class="section">
+        <div class="text">
+            <p>
+                Our team consists of experienced journalists, editors, photographers, and
+                field reporters who work tirelessly to bring accurate and timely news to your
+                fingertips.
+            </p>
+        </div>
+    </div>
+
+    <h2>Our Commitment</h2>
+    <div class="section">
+        <div class="text">
+            <p>
+                We are committed to evolving with modern media while preserving the essence
+                of traditional journalism. Whether in print or digital, our newspaper remains
+                a trusted voice for the people.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '4042.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+</script>
+
+</body>
+</html>

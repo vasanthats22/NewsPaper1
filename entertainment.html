@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entertainment E-Paper</title>
+<style>
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background:#f5f5f5;
+    color:#333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Section styling */
+.section {
+    background: #fff;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.section img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.section-content {
+    padding: 15px 20px;
+}
+
+.section-content h2 {
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    color: #222;
+}
+
+.section-content p {
+    font-size: 1em;
+    color: #555;
+}
+
+/* Alternating layout for larger screens */
+@media(min-width:768px) {
+    .section-flex {
+        display: flex;
+        align-items: center;
+    }
+    .section-flex:nth-child(even) .section-content {
+        order: 2;
+        padding-left: 20px;
+    }
+    .section-flex:nth-child(even) img {
+        order: 1;
+    }
+    .section-flex img {
+        width: 50%;
+        height: auto;
+    }
+    .section-flex .section-content {
+        width: 50%;
+    }
+}
+
+/* Mobile adjustments */
+@media(max-width:767px) {
+    .section-content h2 {
+        font-size: 1.5em;
+    }
+    .section-content p {
+        font-size: 0.95em;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<div class="container">
+
+    <!-- Section 1: Top Entertainment News -->
+    <div class="section section-flex">
+        <img src="tv1.webp" alt="Top Entertainment">
+        <div class="section-content">
+            <h2>Top Entertainment News</h2>
+            <p>Latest movies, celebrity interviews, and entertainment highlights making headlines this week.</p>
+        </div>
+    </div>
+
+    <!-- Section 2: Music -->
+    <div class="section section-flex">
+        <img src="tv2.webp" alt="Music">
+        <div class="section-content">
+            <h2>Music</h2>
+            <p>Chart-topping songs, album releases, and upcoming music events.</p>
+        </div>
+    </div>
+
+    <!-- Section 3: TV & Web Series -->
+    <div class="section section-flex">
+        <img src="tv3.webp" alt="TV Series">
+        <div class="section-content">
+            <h2>TV & Web Series</h2>
+            <p>New seasons, trending shows, and streaming platform updates.</p>
+        </div>
+    </div>
+
+    <!-- Section 4: Celebrity News -->
+    <div class="section section-flex">
+        <img src="tv4.webp" alt="Celebrity News">
+        <div class="section-content">
+            <h2>Celebrity News</h2>
+            <p>Latest gossip, events, and exclusive stories about your favorite celebrities.</p>
+        </div>
+    </div>
+
+    <!-- Section 5: Lifestyle & Fashion -->
+    <div class="section section-flex">
+        <img src="tv5.webp" alt="Lifestyle & Fashion">
+        <div class="section-content">
+            <h2>Lifestyle & Fashion</h2>
+            <p>Trends, events, and style tips from the entertainment world.</p>
+        </div>
+    </div>
+
+    <!-- Section 6: Upcoming Releases -->
+    <div class="section section-flex">
+        <img src="tv6.webp" alt="Upcoming Releases">
+        <div class="section-content">
+            <h2>Upcoming Releases</h2>
+            <p>Movies, shows, and albums coming soon. Check trailers and release dates.</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '4042.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+</script>
+
+</body>
+</html>

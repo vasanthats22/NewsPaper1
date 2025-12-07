@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World News E-Paper</title>
+<style>
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+body {
+    background:#f0f0f0;
+    color:#333;
+}
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Section styling */
+.section {
+    margin-bottom: 25px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+/* Banner image at top */
+.section img.banner {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* Section content */
+.section-content {
+    padding: 15px 20px;
+}
+
+.section-content h2 {
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    color: #222;
+}
+
+.section-content p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Card style for sub-news */
+.sub-news {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.sub-news .card {
+    flex: 1 1 calc(33.333% - 10px);
+    background: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.sub-news .card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.sub-news .card p {
+    padding: 8px;
+    font-size: 0.9em;
+    color: #444;
+}
+
+/* Mobile responsiveness */
+@media(max-width:768px) {
+    .sub-news .card {
+        flex: 1 1 48%;
+    }
+}
+
+@media(max-width:480px) {
+    .section-content h2 {
+        font-size: 1.5em;
+        text-align: center;
+    }
+    .section-content p {
+        font-size: 0.95em;
+        text-align: center;
+    }
+    .sub-news {
+        flex-direction: column;
+        align-items: center;
+    }
+    .sub-news .card {
+        width: 90%;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<div class="container">
+
+    <!-- Section 1: Top Headlines -->
+    <div class="section">
+        <img class="banner" src="worldnew1.webp" alt="Top Headlines">
+        <div class="section-content">
+            <h2>Top Headlines</h2>
+            <p>Breaking news and global events making headlines today.</p>
+            <div class="sub-news">
+                <div class="card">
+                    <img src="worldnew2.webp" alt="News1">
+                    <p>World leaders meet to discuss climate change initiatives.</p>
+                </div>
+                <div class="card">
+                    <img src="worldnew3.webp" alt="News2">
+                    <p>Global markets react to new economic policies.</p>
+                </div>
+                <div class="card">
+                    <img src="worldnew4.webp" alt="News3">
+                    <p>Major international sporting event concludes successfully.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Politics -->
+    <div class="section">
+        <img class="banner" src="politics1.webp" alt="Politics">
+        <div class="section-content">
+            <h2>Politics</h2>
+            <p>Updates on governments, elections, and international relations.</p>
+            <div class="sub-news">
+                <div class="card">
+                    <img src="politics2.webp" alt="Politics1">
+                    <p>Recent election results in Europe.</p>
+                </div>
+                <div class="card">
+                    <img src="politics3.webp" alt="Politics2">
+                    <p>Diplomatic talks on trade agreements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Economy -->
+    <div class="section">
+        <img class="banner" src="economy1.webp" alt="Economy">
+        <div class="section-content">
+            <h2>Economy</h2>
+            <p>World financial news and market trends.</p>
+            <div class="sub-news">
+                <div class="card">
+                    <img src="economy2.webp" alt="Economy1">
+                    <p>Stock markets show mixed reactions globally.</p>
+                </div>
+                <div class="card">
+                    <img src="economy3.webp" alt="Economy2">
+                    <p>Major trade deals signed between countries.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4: Environment -->
+    <div class="section">
+        <img class="banner" src="environment1.webp" alt="Environment">
+        <div class="section-content">
+            <h2>Environment</h2>
+            <p>Global environmental updates and climate news.</p>
+            <div class="sub-news">
+                <div class="card">
+                    <img src="environment2.webp" alt="Environment1">
+                    <p>New climate initiatives announced by nations.</p>
+                </div>
+                <div class="card">
+                    <img src="environment3.webp" alt="Environment2">
+                    <p>Wildlife conservation projects gain attention.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 5: Technology -->
+    <div class="section">
+        <img class="banner" src="tech1.webp" alt="Technology">
+        <div class="section-content">
+            <h2>Technology</h2>
+            <p>Innovations, gadgets, and tech developments worldwide.</p>
+            <div class="sub-news">
+                <div class="card">
+                    <img src="tech2.webp" alt="Tech1">
+                    <p>Breakthrough AI research published.</p>
+                </div>
+                <div class="card">
+                    <img src="tech3.webp" alt="Tech2">
+                    <p>New smartphone models launched globally.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 6: Health -->
+    <div class="section">
+        <img class="banner" src="health1.webp" alt="Health">
+        <div class="section-content">
+            <h2>Health</h2>
+            <p>Global health news, research, and wellness updates.</p>
+            <div class="sub-news">
+                <div class="card">
+                    <img src="health2.webp" alt="Health1">
+                    <p>New vaccination programs introduced.</p>
+                </div>
+                <div class="card">
+                    <img src="health3.webp" alt="Health2">
+                    <p>Studies reveal health trends worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '4042.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+</script>
+
+</body>
+</html>

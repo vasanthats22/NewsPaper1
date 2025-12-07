@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News Home 1</title>
+<style>
+/* RESET & BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Remove horizontal scroll */
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* CONTAINER */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HERO */
+.hero {
+  background: url('worldnew3.webp') center/cover no-repeat;
+  height: 350px;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  width: 100%;
+  overflow: hidden;
+}
+.hero h1 {
+  font-size: 32px;
+  max-width: 100%;
+  background: rgba(0,0,0,0.5);
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+/* SECTION TITLE */
+.section-title {
+  margin: 40px 0 15px;
+  font-size: 24px;
+  font-weight: bold;
+  border-left: 5px solid #ff3b3b;
+  padding-left: 10px;
+}
+
+/* GRID GENERAL */
+.grid {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+}
+
+/* TOP STORIES */
+.top-stories {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.story-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.story-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+.story-card div {
+  padding: 12px;
+}
+.story-card h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+/* FEATURED BLOCK */
+.featured-block {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.featured-block p {
+  margin-top: 10px;
+}
+
+/* OPINION SECTION */
+.opinion {
+  grid-template-columns: 1fr 1fr;
+}
+.opinion-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.opinion-card h4 {
+  margin-bottom: 8px;
+}
+
+/* LATEST NEWS LIST */
+.latest-news ul {
+  list-style: none;
+}
+.latest-news li {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px){
+  .hero {height: 250px;}
+  .hero h1 {font-size: 22px; max-width: 100%;}
+  .opinion {grid-template-columns: 1fr;}
+  .container {width: 95%;}
+  .grid {gap: 15px;}
+  .story-card img {height: 140px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<!-- HERO -->
+<div class="container">
+    <section class="hero">
+        <h1>Breaking: Major Global Events Shaping the Week</h1>
+    </section>
+</div>
+
+<!-- TOP STORIES -->
+<div class="container">
+    <h2 class="section-title">Top Stories</h2>
+    <div class="grid top-stories">
+        <div class="story-card">
+            <img src="economy1.webp" alt="Economy">
+            <div>
+                <h3>Economy Sees Major Shift</h3>
+                <p>Market conditions change as global tensions rise...</p>
+            </div>
+        </div>
+        <div class="story-card">
+            <img src="tech1.webp" alt="Tech">
+            <div>
+                <h3>New Tech Innovations</h3>
+                <p>Latest breakthroughs announced in major summit...</p>
+            </div>
+        </div>
+        <div class="story-card">
+            <img src="sport1.webp" alt="Sports">
+            <div>
+                <h3>Sports: Championship Highlights</h3>
+                <p>Teams deliver incredible performances this week...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FEATURED BLOCK -->
+<div class="container">
+    <h2 class="section-title">Featured Insight</h2>
+    <div class="featured-block">
+        <h2>How Digital Media Is Changing Journalism</h2>
+        <p>Experts discuss the ongoing transformation in the news industry...</p>
+    </div>
+</div>
+
+<!-- OPINION -->
+<div class="container">
+    <h2 class="section-title">Opinion</h2>
+    <div class="grid opinion">
+        <div class="opinion-card">
+            <h4>Editorial: The Future of Global Politics</h4>
+            <p>A detailed look into shifting geopolitical alliances...</p>
+        </div>
+        <div class="opinion-card">
+            <h4>Column: Youth & Innovation</h4>
+            <p>Young entrepreneurs are redefining industries worldwide...</p>
+        </div>
+    </div>
+</div>
+
+<!-- LATEST NEWS -->
+<div class="container latest-news">
+    <h2 class="section-title">Latest News</h2>
+    <ul>
+        <li>World leaders meet to discuss climate strategies</li>
+        <li>New policies announced to improve public healthcare</li>
+        <li>Major discovery in the field of space science</li>
+        <li>City infrastructure gets major upgrade plan</li>
+        <li>Education reforms proposed for modern learning</li>
+    </ul>
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '404.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+</script>
+
+</body>
+</html>
